@@ -2,15 +2,16 @@ from django.db import models
 from django.db.models import signals
 from provider.models import Provider
 from product.models import Product
+from employee.models import Employee
 
 class Buy(models.Model):
-    code = models.CharField('code', max_length=10, null=True)
+    invoice = models.CharField('invoice', max_length=10, null=True)
     provider = models.ForeignKey(Provider)
     date = models.DateTimeField('date', auto_now_add=True)
     product = models.ManyToManyField(Product, through='Purchase_Detail')
 
     def __unicode__(self):
-        return self.code
+        return self.invoice
 
     class Meta:
         verbose_name = 'buy'
@@ -21,8 +22,12 @@ class Purchase_Detail(models.Model):
     product = models.ForeignKey(Product)
     quantity = models.IntegerField(null=False)
 
-    #def __unicode__(self):
-       #return self.buy.code
+    def __unicode__(self):
+      return self.buy.invoice
+
+    def Total_Shop(self):
+        total = (self.quantity *self.product.cost )
+        return total
 
     class Meta:
         verbose_name = 'purchase detail'

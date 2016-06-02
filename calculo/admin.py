@@ -13,7 +13,7 @@ class MovAdmin(admin.ModelAdmin):
             'fields':('comision',),
         }),
     )
-    list_display = ('cantidad', 'precio', 'comision','Total_Venta')
+    list_display = ("cantidad", "precio", "comision","Total_Venta")
 
 admin.site.register(Movimiento,MovAdmin)
 # Register your models here.

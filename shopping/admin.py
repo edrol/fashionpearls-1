@@ -7,6 +7,7 @@ class Purchase_Online(admin.TabularInline):
     extra = 1
 
 class PurchaseAdmin(admin.ModelAdmin):
+    list_display = ('invoice',)
     inlines = (Purchase_Online,)
 
 admin.site.register(Buy, PurchaseAdmin)
