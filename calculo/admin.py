@@ -4,16 +4,15 @@ from django.utils.safestring import mark_safe
 
 
 class MovAdmin(admin.ModelAdmin):
-    fieldsets = (
+    '''fieldsets = (
         ('hola',{
             'fields':('cantidad','precio')
         }),
         ('opciones',{
             'classes':('collapse',),
-            'fields':('comision',),
         }),
-    )
-    list_display = ("cantidad", "precio", "comision","Total_Venta")
+    )'''
+    list_display = ("cantidad", "precio", "Total_Venta")
 
 admin.site.register(Movimiento,MovAdmin)
 # Register your models here.
