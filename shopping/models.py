@@ -4,6 +4,7 @@ from provider.models import Provider
 from product.models import Product
 from employee.models import Employee
 
+
 class Buy(models.Model):
     invoice = models.CharField('invoice', max_length=10, null=True)
     provider = models.ForeignKey(Provider)
@@ -17,17 +18,19 @@ class Buy(models.Model):
         verbose_name = 'buy'
         verbose_name_plural = 'shopping'
 
+
 class Purchase_Detail(models.Model):
     buy = models.ForeignKey(Buy)
-    product = models.ForeignKey(Product)
+    product = models.ForeignKey(Product, null=True)
     quantity = models.IntegerField(null=False)
+    cost = models.IntegerField(null=True)
 
     def __unicode__(self):
-      return self.buy.invoice
+        return self.buy.invoice
 
-    def Total_Shop(self):
-        total = (self.quantity *self.product.cost )
-        return total
+    def sub_total(self):
+        subTotal = (self.quantity * self.cost)
+        return subTotal
 
     class Meta:
         verbose_name = 'purchase detail'
